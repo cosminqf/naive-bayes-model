@@ -1,6 +1,7 @@
-# DETECTAREA INFLUENȚEI ÎN ȘTIRILE SPORTIVE
+# Detectarea influenței în știrile sportive
 
 1. DESCRIERE ȘI MODEL MATEMATIC
+
 Acest proiect utilizează tehnici de procesare a limbajului natural (NLP) pentru 
 a clasifica știrile sportive.
 
