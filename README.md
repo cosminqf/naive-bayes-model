@@ -1,4 +1,4 @@
-##DETECTAREA INFLUENȚEI ÎN ȘTIRILE SPORTIVE
+# DETECTAREA INFLUENȚEI ÎN ȘTIRILE SPORTIVE
 
 1. DESCRIERE ȘI MODEL MATEMATIC
 Acest proiect utilizează tehnici de procesare a limbajului natural (NLP) pentru 
