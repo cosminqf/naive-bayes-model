@@ -1,6 +1,6 @@
 # Detectarea influenței în știrile sportive
 
-1. DESCRIERE ȘI MODEL MATEMATIC
+## 1. DESCRIERE ȘI MODEL MATEMATIC
 
 Acest proiect utilizează tehnici de procesare a limbajului natural (NLP) pentru 
 a clasifica știrile sportive.
@@ -16,7 +16,7 @@ C. Modelul Multinomial:
    Ia în calcul frecvența cuvintelor (de câte ori apare un termen), nu doar 
    prezența lor.
 
-2. STRUCTURA CODULUI (Fișiere Principale)
+## 2. STRUCTURA CODULUI (Fișiere Principale)
 Proiectul este împărțit în trei module:
 
 1. colectare_date.py
@@ -33,7 +33,7 @@ Proiectul este împărțit în trei module:
    - Vectorizează textul (Bag of Words).
    - Antrenează modelul MultinomialNB și calculează acuratețea.
 
-3. INSTRUCȚIUNI DE UTILIZARE
+## 3. INSTRUCȚIUNI DE UTILIZARE
 
 PASUL 1: PREGĂTIREA MEDIULUI
 Instalează bibliotecile necesare:
@@ -50,7 +50,7 @@ PASUL 3: RULAREA SECVENȚIALĂ
 2. Procesare:   python procesare_date.py
 3. Model:       python model_bayes.py
 
-4. EXEMPLE DE UTILIZARE 
+## 4. EXEMPLE DE UTILIZARE 
 După rularea modelului, poți testa interactiv:
 
 Exemplu 1 (Becali):
