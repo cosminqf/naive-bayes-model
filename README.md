@@ -1,71 +1,110 @@
-# Detectarea influenței în știrile sportive
+# 📘 Clasificator Articole Sportive (Știri despre Becali vs Altele)
 
-## 1. DESCRIERE ȘI MODEL MATEMATIC
+Acest proiect realizează automat:
 
-Acest proiect utilizează tehnici de procesare a limbajului natural (NLP) pentru 
-a clasifica știrile sportive.
+1.  **Colectarea articolelor** (web scraping)\
+2.  **Procesarea și etichetarea conținutului**\
+3.  **Antrenarea unui model Naive Bayes** care clasifică articolele în:
+    -   `Despre_Becali`\
+    -   `Altele`
 
-Modelul utilizat este NAIVE BAYES (MultinomialNB), bazat pe:
-A. Teorema lui Bayes: P(c|x) = (P(x|c) * P(c)) / P(x)
-   Unde calculăm probabilitatea ca un document 'x' să aparțină clasei 'c'.
+## Structura proiectului
 
-B. Asumpția "Naive": 
-   Presupunem că apariția unui cuvânt este independentă de apariția altora.
+    /proiect
+    │── colectare_date.py
+    │── procesare_date.py
+    │── model_bayes.py
+    │── articole_brute.csv        (generat automat)
+    │── articole_procesate.csv    (generat automat)
 
-C. Modelul Multinomial:
-   Ia în calcul frecvența cuvintelor (de câte ori apare un termen), nu doar 
-   prezența lor.
 
-## 2. STRUCTURA CODULUI (Fișiere Principale)
-Proiectul este împărțit în trei module:
+## 1. Colectarea datelor
 
-1. colectare_date.py
-   - Funcție: Web Scraping.
-   - Extrage titlul și conținutul de pe site-uri de sport (DigiSport, GSP, ProSport).
+**Script:** `colectare_date.py`\
+**Output:** `articole_brute.csv`
 
-2. procesare_date.py
-   - Funcție: Procesare și Etichetare.
-   - Curăță textul (elimină stopwords, punctuație).
-   - Etichetează automat în "Despre_Becali" sau "Altele".
+Scraperul extrage articole de pe:
 
-3. model_bayes.py
-   - Funcție: Antrenare AI.
-   - Vectorizează textul (Bag of Words).
-   - Antrenează modelul MultinomialNB și calculează acuratețea.
+-   prosport.ro\
+-   gsp.ro\
+-   digisport.ro
 
-## 3. INSTRUCȚIUNI DE UTILIZARE
+Pentru fiecare articol se salvează:
 
-PASUL 1: PREGĂTIREA MEDIULUI
-Instalează bibliotecile necesare:
-   pip install pandas scikit-learn nltk beautifulsoup4 requests unidecode
+-   URL\
+-   domeniu\
+-   titlu\
+-   conținut
 
-PASUL 2: DESCĂRCAREA DATELOR NLTK
-Rulează în Python:
-   import nltk
-   nltk.download('stopwords')
-   nltk.download('punkt')
+### Rulare:
 
-PASUL 3: RULAREA SECVENȚIALĂ
-1. Colectare:   python colectare_date.py
-2. Procesare:   python procesare_date.py
-3. Model:       python model_bayes.py
+``` bash
+python3 colectare_date.py
+```
 
-## 4. EXEMPLE DE UTILIZARE 
-După rularea modelului, poți testa interactiv:
+## 2. Procesarea și etichetarea datelor
 
-Exemplu 1 (Becali):
-   Input: "mm stoica a plecat"
-   Text procesat: "patronul fcsb tunat fulgerat palat stoica plecat"
-   Predicție: Despre_Becali (Probabilitate: 98.45%)
+**Script:** `procesare_date.py`\
+**Input:** `articole_brute.csv`\
+**Output:** `articole_procesate.csv`
 
-Exemplu 2 (Altele):
-   Input: "simona halep a castigat meciul de tenis la madrid"
-   Text procesat: "simona halep castigat meciul tenis madrid..."
-   Predicție: Altele (Probabilitate: 99.12%)
+Operațiile efectuate:
 
-5. REFERINȚE BIBLIOGRAFICE
-1. Manning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to 
-   Information Retrieval. Cambridge University Press.
-2. Jurafsky, D., & Martin, J. H. (2023). Speech and Language Processing.
-3. Scikit-learn Developers (2023) - Documentație oficială MultinomialNB.
-4. Bird, S., Klein, E. (2009). Natural Language Processing with Python.
+-   convertire la lowercase\
+-   tokenizare\
+-   eliminare stop-words românești\
+-   filtrare cuvinte scurte / non-alfabetice\
+-   detecție automată a etichetei din titlu pe baza listelor:
+    -   `ETICHETE_BECALI`
+    -   `ETICHETE_ALTELE`
+
+Articolele fără cuvinte-cheie relevante sunt ignorate.
+
+### Rulare:
+
+``` bash
+python3 procesare_date.py
+```
+
+
+## 3. Model Naive Bayes
+
+**Script:** `model_bayes.py`\
+**Input:** `articole_procesate.csv`
+
+Ce face scriptul:
+
+-   reconstruiește textul procesat\
+-   vectorizează cu CountVectorizer\
+-   împarte setul în train/test\
+-   antrenează modelul `MultinomialNB`\
+-   afișează acuratețea\
+-   oferă un prompt pentru testare manuală
+
+### Rulare:
+
+``` bash
+python3 model_bayes.py
+```
+
+Exemplu testare:
+
+    Scrie text pt test sau exit pt a inchide:
+    > Becali a anunțat...
+
+
+## Dependențe
+
+Instalează pachetele necesare:
+
+``` bash
+pip install requests beautifulsoup4 pandas scikit-learn nltk unidecode
+```
+
+### Setup NLTK:
+
+``` python
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+```
