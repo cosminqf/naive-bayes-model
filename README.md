@@ -5,7 +5,7 @@ Acest proiect realizează automat:
 1.  **Colectarea articolelor** (web scraping)
 2.  **Procesarea și etichetarea conținutului**
 3.  **Antrenarea unui model Naive Bayes** care clasifică articolele în:
-    -   `Despre_Becali`\
+    -   `Despre_Becali`
     -   `Altele`
 
 ## Structura proiectului
