@@ -2,8 +2,8 @@
 
 Acest proiect realizează automat:
 
-1.  **Colectarea articolelor** (web scraping)\
-2.  **Procesarea și etichetarea conținutului**\
+1.  **Colectarea articolelor** (web scraping)
+2.  **Procesarea și etichetarea conținutului**
 3.  **Antrenarea unui model Naive Bayes** care clasifică articolele în:
     -   `Despre_Becali`\
     -   `Altele`
@@ -20,20 +20,20 @@ Acest proiect realizează automat:
 
 ## 1. Colectarea datelor
 
-**Script:** `colectare_date.py`\
+**Script:** `colectare_date.py`
 **Output:** `articole_brute.csv`
 
 Scraperul extrage articole de pe:
 
--   prosport.ro\
--   gsp.ro\
+-   prosport.ro
+-   gsp.ro
 -   digisport.ro
 
 Pentru fiecare articol se salvează:
 
--   URL\
--   domeniu\
--   titlu\
+-   URL
+-   domeniu
+-   titlu
 -   conținut
 
 ### Rulare:
@@ -44,16 +44,16 @@ python3 colectare_date.py
 
 ## 2. Procesarea și etichetarea datelor
 
-**Script:** `procesare_date.py`\
-**Input:** `articole_brute.csv`\
+**Script:** `procesare_date.py`
+**Input:** `articole_brute.csv`
 **Output:** `articole_procesate.csv`
 
 Operațiile efectuate:
 
--   convertire la lowercase\
--   tokenizare\
--   eliminare stop-words românești\
--   filtrare cuvinte scurte / non-alfabetice\
+-   convertire la lowercase
+-   tokenizare
+-   eliminare stop-words românești
+-   filtrare cuvinte scurte / non-alfabetice
 -   detecție automată a etichetei din titlu pe baza listelor:
     -   `ETICHETE_BECALI`
     -   `ETICHETE_ALTELE`
@@ -69,16 +69,16 @@ python3 procesare_date.py
 
 ## 3. Model Naive Bayes
 
-**Script:** `model_bayes.py`\
+**Script:** `model_bayes.py`
 **Input:** `articole_procesate.csv`
 
 Ce face scriptul:
 
--   reconstruiește textul procesat\
--   vectorizează cu CountVectorizer\
--   împarte setul în train/test\
--   antrenează modelul `MultinomialNB`\
--   afișează acuratețea\
+-   reconstruiește textul procesat
+-   vectorizează cu CountVectorizer
+-   împarte setul în train/test
+-   antrenează modelul `MultinomialNB`
+-   afișează acuratețea
 -   oferă un prompt pentru testare manuală
 
 ### Rulare:
