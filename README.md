@@ -1,4 +1,4 @@
-# Detectarea Influenței în știrile sportive (Știri despre Becali vs Altele)
+# Detectarea Influenței în Știrile Sportive (Becali vs Altele)
 
 Acest proiect realizează automat:
 
