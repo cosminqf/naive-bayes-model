@@ -1,4 +1,4 @@
-# 📘 Clasificator Articole Sportive (Știri despre Becali vs Altele)
+# Detectarea Influenței în știrile sportive (Știri despre Becali vs Altele)
 
 Acest proiect realizează automat:
 
